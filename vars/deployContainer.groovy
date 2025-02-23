@@ -1,5 +1,5 @@
 def call (String cmd) {
-    sh "docker rm -f ${CONTAINER_NAME} || true"
+    sh "docker rm -f ${JOB_NAME} || true"
     
     sh """
         docker run \
@@ -7,7 +7,7 @@ def call (String cmd) {
             --restart always \
             -p ${CONTAINER_PORT} \
             -v ${WORKSPACE}:/app \
-            --name ${CONTAINER_NAME} \
+            --name ${JOB_NAME} \
             ${CONTAINER_ENVIRONMENT} \
             sh -c "cd app && ${cmd}"
     """

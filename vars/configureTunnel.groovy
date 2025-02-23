@@ -1,12 +1,12 @@
 def call () {
     def TUNNEL_NAME = "my-tunnel"
     def BASE_DOMAIN = "dire-wolf.tech"
-    def HOSTNAME = "${CONTAINER_NAME}.${BASE_DOMAIN}"
+    def HOSTNAME = "${JOB_NAME}.${BASE_DOMAIN}"
 
     def hostPort = sh(script: """
         docker inspect \
         --format='{{(index (index .NetworkSettings.Ports "${CONTAINER_PORT}/tcp") 0).HostPort}}' \
-        ${CONTAINER_NAME} 
+        ${JOB_NAME} 
     """, 
     returnStdout: true)
                     
