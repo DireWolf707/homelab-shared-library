@@ -5,7 +5,7 @@ def call (String cmd) {
         docker run \
             -d \
             --restart always \
-            -p ${CONTAINER_PORT} \
+            -p ${HOST_PORT}:${CONTAINER_PORT} \
             -v ${WORKSPACE}:/app \
             --name ${JOB_NAME} \
             ${CONTAINER_ENVIRONMENT} \
